@@ -1,0 +1,17 @@
+C:\Users\mdxbu\Labs\4SEMESTR\OOP\CalcShoes\CalcShoes\bin\Debug\net6.0-windows\CalcShoes.exe
+C:\Users\mdxbu\Labs\4SEMESTR\OOP\CalcShoes\CalcShoes\bin\Debug\net6.0-windows\CalcShoes.deps.json
+C:\Users\mdxbu\Labs\4SEMESTR\OOP\CalcShoes\CalcShoes\bin\Debug\net6.0-windows\CalcShoes.runtimeconfig.json
+C:\Users\mdxbu\Labs\4SEMESTR\OOP\CalcShoes\CalcShoes\bin\Debug\net6.0-windows\CalcShoes.dll
+C:\Users\mdxbu\Labs\4SEMESTR\OOP\CalcShoes\CalcShoes\bin\Debug\net6.0-windows\CalcShoes.pdb
+C:\Users\mdxbu\Labs\4SEMESTR\OOP\CalcShoes\CalcShoes\obj\Debug\net6.0-windows\CalcShoes.csproj.AssemblyReference.cache
+C:\Users\mdxbu\Labs\4SEMESTR\OOP\CalcShoes\CalcShoes\obj\Debug\net6.0-windows\CalcShoes.Calculator.resources
+C:\Users\mdxbu\Labs\4SEMESTR\OOP\CalcShoes\CalcShoes\obj\Debug\net6.0-windows\CalcShoes.csproj.GenerateResource.cache
+C:\Users\mdxbu\Labs\4SEMESTR\OOP\CalcShoes\CalcShoes\obj\Debug\net6.0-windows\CalcShoes.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mdxbu\Labs\4SEMESTR\OOP\CalcShoes\CalcShoes\obj\Debug\net6.0-windows\CalcShoes.AssemblyInfoInputs.cache
+C:\Users\mdxbu\Labs\4SEMESTR\OOP\CalcShoes\CalcShoes\obj\Debug\net6.0-windows\CalcShoes.AssemblyInfo.cs
+C:\Users\mdxbu\Labs\4SEMESTR\OOP\CalcShoes\CalcShoes\obj\Debug\net6.0-windows\CalcShoes.csproj.CoreCompileInputs.cache
+C:\Users\mdxbu\Labs\4SEMESTR\OOP\CalcShoes\CalcShoes\obj\Debug\net6.0-windows\CalcShoes.dll
+C:\Users\mdxbu\Labs\4SEMESTR\OOP\CalcShoes\CalcShoes\obj\Debug\net6.0-windows\refint\CalcShoes.dll
+C:\Users\mdxbu\Labs\4SEMESTR\OOP\CalcShoes\CalcShoes\obj\Debug\net6.0-windows\CalcShoes.pdb
+C:\Users\mdxbu\Labs\4SEMESTR\OOP\CalcShoes\CalcShoes\obj\Debug\net6.0-windows\CalcShoes.genruntimeconfig.cache
+C:\Users\mdxbu\Labs\4SEMESTR\OOP\CalcShoes\CalcShoes\obj\Debug\net6.0-windows\ref\CalcShoes.dll

@@ -163,5 +163,21 @@ namespace Lab4_5
             else
                 MessageBox.Show("Рейсы для ваших параметров отсутствуют :(", "Что-то пошло не так", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
+
+        private void ENGbutton_Click(object sender, RoutedEventArgs e)
+        {
+            ResourceDictionary dict = new ResourceDictionary();
+            dict.Source = new Uri("Dictionary-en.xaml", UriKind.RelativeOrAbsolute);
+            this.Resources.MergedDictionaries.Clear();
+            this.Resources.MergedDictionaries.Add(dict);
+        }
+
+        private void RUbtn_Click(object sender, RoutedEventArgs e)
+        {
+            ResourceDictionary dict = new ResourceDictionary();
+            dict.Source = new Uri("Dictionary-ru.xaml", UriKind.RelativeOrAbsolute);
+            this.Resources.MergedDictionaries.Clear();
+            this.Resources.MergedDictionaries.Add(dict);
+        }
     }
 }

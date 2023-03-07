@@ -3,13 +3,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Lab4_5"
         mc:Ignorable="d"
         Title="Results" Height="750" Width="800" Icon="C:\Users\mdxbu\Labs\4SEMESTR\OOP4SEM\Lab4_5\Lab4_5\images\lul.png" Background="WhiteSmoke" Loaded="Window_Loaded">
     <Grid>
+        <StackPanel>
+            <Button x:Name="ENGbutton" Height="30" Width="30" Style="{DynamicResource ultraBtn}"
+                    HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5" Content="ENG" Click="ENGbutton_Click"/>
+            <Button x:Name="RUbtn" Height="30" Width="30"  Style="{DynamicResource ultraBtn}"
+                    HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5" Content="RU" Click="RUbtn_Click"/>
+        </StackPanel>
         <Border HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 5 0 0" Background="Teal" Visibility="Visible" Padding="5" CornerRadius="5">
             <TabControl Height="180" Width="650" FontSize="14">
-                <TabItem Header="Добавить запись">
+                <TabItem Header="{DynamicResource AddRecord}">
                     <Grid Background="LightYellow">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -22,48 +27,48 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Grid.Column="0">
-                            <TextBlock Text="Отправляется" Margin="3"></TextBlock>
+                            <TextBlock Text="{DynamicResource Departure}" Margin="3"></TextBlock>
                             <TextBox x:Name="depFrom" Margin="3" PreviewTextInput="desDep_PreviewTextInput"></TextBox>
                         </StackPanel>
                         <StackPanel Grid.Row="0" Grid.Column="1">
-                            <TextBlock Text="Прибывает" Margin="3"></TextBlock>
+                            <TextBlock Text="{DynamicResource Destination}" Margin="3"></TextBlock>
                             <TextBox x:Name="desTo" Margin="3"  PreviewTextInput="desDep_PreviewTextInput"></TextBox>
                         </StackPanel>
                         <StackPanel Grid.Row="0" Grid.Column="2">
-                            <TextBlock Text="Стоимость" Margin="3"></TextBlock>
+                            <TextBlock Text="{DynamicResource Price}" Margin="3"></TextBlock>
                             <Slider x:Name="PriceSlider" Margin="3" Minimum="100" Maximum="998"></Slider>
                         </StackPanel>
                         <StackPanel Grid.Row="1" Grid.Column="0">
-                            <TextBlock Text="Номер" Margin="3"></TextBlock>
+                            <TextBlock Text="{DynamicResource Number}" Margin="3"></TextBlock>
                             <TextBox Margin="3" Width="45" HorizontalAlignment="Left" MaxLength="4" x:Name="NumBox"  PreviewTextInput="HoursInFlight_PreviewTextInput"></TextBox>
                         </StackPanel>
                         <StackPanel Grid.Row="1" Grid.Column="1">
-                            <TextBlock Text="Отправление" Margin="3"></TextBlock>
+                            <TextBlock Text="{DynamicResource Date}" Margin="3"></TextBlock>
                             <DatePicker x:Name="depPicker"></DatePicker>
                         </StackPanel>
                         <StackPanel Grid.Row="1" Grid.Column="2">
-                            <TextBlock Text="В пути" Margin="3"></TextBlock>
+                            <TextBlock Text="{DynamicResource Duration}" Margin="3"></TextBlock>
                             <TextBox x:Name="HoursInFlight" Width="40 px" HorizontalAlignment="Left" Margin="3" 
                                      PreviewTextInput="HoursInFlight_PreviewTextInput" MaxLength="2"></TextBox>
                         </StackPanel>
-                        <Button x:Name="CreateFlight" Grid.Column="1" Grid.Row="2" Height="30" Width="150" Content="Создать" FontSize="18" BorderBrush="Red" Background="LightGreen" Click="CreateFlight_Click"></Button>
+                        <Button x:Name="CreateFlight" Grid.Column="1" Grid.Row="2" Height="30" Width="150" Content="{DynamicResource Create}" FontSize="18" BorderBrush="Red" Background="LightGreen" Click="CreateFlight_Click"></Button>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Удалить запись">
+                <TabItem Header="{DynamicResource DelRecord}">
                     <Grid Background="LightYellow">
                         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <TextBlock FontSize="20" FontFamily="Arial Rounded MT Bold">ВВедите номер рейса для удаления</TextBlock>
+                            <TextBlock FontSize="20" FontFamily="Arial Rounded MT Bold" Text="{DynamicResource NumToDelete}"></TextBlock>
                             <TextBox x:Name="numberToDelete" Margin="0 10 0 0" Width="100"  PreviewTextInput="HoursInFlight_PreviewTextInput"></TextBox>
-                            <Button x:Name="deleteFlight" Height="30" Width="150" Margin="10" Background="DarkOrange" Content="Удалить" FontWeight="Bold" Click="deleteFlight_Click"></Button>
+                            <Button x:Name="deleteFlight" Height="30" Width="150" Margin="10" Background="DarkOrange" Content="{DynamicResource Delete}" FontWeight="Bold" Click="deleteFlight_Click"></Button>
                         </StackPanel>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Вывести всё">
+                <TabItem Header="{DynamicResource Show all}">
                     <Grid Background="LightYellow">
-                        <Button Height="45" Width="230" Background="Azure" BorderBrush="ForestGreen" Content="Вывести всё" FontSize="22" FontWeight="Bold" Click="Button_Click"></Button>
+                        <Button Height="45" Width="230" Background="Azure" BorderBrush="ForestGreen" Content="{DynamicResource Show all}" FontSize="22" FontWeight="Bold" Click="Button_Click"></Button>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Фильтрация">
+                <TabItem Header="{DynamicResource Filter}">
                     <Grid Background="LightYellow">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition></ColumnDefinition>
@@ -75,7 +80,7 @@
                             <RowDefinition Height="60"/>
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Grid.Column="0">
-                            <TextBlock Text="Цена" HorizontalAlignment="Center" Margin="0 5 0 0"  FontFamily="Arial Rounded MT Bold"></TextBlock>
+                            <TextBlock Text="{DynamicResource Price}" HorizontalAlignment="Center" Margin="0 5 0 0"  FontFamily="Arial Rounded MT Bold"></TextBlock>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 5 0 0">
                                 <TextBox x:Name="priceStart" Width="50"  PreviewTextInput="HoursInFlight_PreviewTextInput" MaxLength="4"></TextBox>
                                 <TextBlock xml:space="preserve" Text=" --- " FontWeight="Bold"></TextBlock>
@@ -83,29 +88,29 @@
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Grid.Row="0" Grid.Column="1">
-                            <TextBlock  Text="Отправление" Margin="0 5 0 0"  FontFamily="Arial Rounded MT Bold" HorizontalAlignment="Center"></TextBlock>
+                            <TextBlock  Text="{DynamicResource Destination}" Margin="0 5 0 0"  FontFamily="Arial Rounded MT Bold" HorizontalAlignment="Center"></TextBlock>
                             <TextBox x:Name="depFilter" Margin="0 5 0 0" PreviewTextInput="desDep_PreviewTextInput" MaxLength="20"/>
                         </StackPanel>
                         <StackPanel Grid.Row="0" Grid.Column="2">
-                            <TextBlock  Text="Диапазон дат" Margin="0 5 0 0"  FontFamily="Arial Rounded MT Bold" HorizontalAlignment="Center"></TextBlock>
+                            <TextBlock  Text="{DynamicResource Range}" Margin="0 5 0 0"  FontFamily="Arial Rounded MT Bold" HorizontalAlignment="Center"></TextBlock>
                             <DatePicker x:Name="dPickerFrom" Width="150"></DatePicker>
                             <DatePicker x:Name="dPickerTo" Width="150" Margin="0 5 0 0"></DatePicker>
                         </StackPanel>
                         <Button x:Name="Filter" Grid.Column="1" Grid.Row="1" Height="35" Width="140" BorderBrush="LimeGreen" Background="DarkOrange" 
-                                Content="Поиск" FontSize="18" FontFamily="Verdana" Click="Filter_Click"></Button>
+                                Content="{DynamicResource Search}" FontSize="18" FontFamily="Verdana" Click="Filter_Click"></Button>
                     </Grid>
                 </TabItem>
             </TabControl>
         </Border>
-        <TextBlock Text="Результаты" HorizontalAlignment="Center" Margin="0 225 0 0" FontWeight="Bold" FontSize="20"/>
+        <TextBlock Text="{DynamicResource Results}" HorizontalAlignment="Center" Margin="0 225 0 0" FontWeight="Bold" FontSize="20"/>
         <DataGrid x:Name="dgResults" Margin="10 270 10 0" HorizontalAlignment="Center" FontSize="14" IsReadOnly="True" AutoGenerateColumns="False">
             <DataGrid.Columns >
-                <DataGridTextColumn Header="Номер" Binding="{Binding Path=Num}" Width="55"></DataGridTextColumn>
-                <DataGridTextColumn Header="Отправление" Binding="{Binding Path=DepartureCity}" Width="150"></DataGridTextColumn>
-                <DataGridTextColumn Header="Время" Binding="{Binding Path=DepTime}" Width="130"></DataGridTextColumn>
-                <DataGridTextColumn Header="Прибытие" Binding="{Binding Path=DestinationCity}" Width="200"></DataGridTextColumn>
-                <DataGridTextColumn Header="Время" Binding="{Binding Path=DestinationTime}" Width="130"></DataGridTextColumn>
-                <DataGridTextColumn Header="Стоимость " Binding="{Binding Path=Price}" Width="80"></DataGridTextColumn>
+                <DataGridTextColumn Header="{DynamicResource Number}" Binding="{Binding Path=Num}" Width="55"></DataGridTextColumn>
+                <DataGridTextColumn Header="{DynamicResource Departure}" Binding="{Binding Path=DepartureCity}" Width="150"></DataGridTextColumn>
+                <DataGridTextColumn Header="{DynamicResource Time}" Binding="{Binding Path=DepTime}" Width="130"></DataGridTextColumn>
+                <DataGridTextColumn Header="{DynamicResource Destination}" Binding="{Binding Path=DestinationCity}" Width="200"></DataGridTextColumn>
+                <DataGridTextColumn Header="{DynamicResource Time}" Binding="{Binding Path=DestinationTime}" Width="130"></DataGridTextColumn>
+                <DataGridTextColumn Header="{DynamicResource Price}" Binding="{Binding Path=Price}" Width="80"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

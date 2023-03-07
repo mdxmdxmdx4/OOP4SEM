@@ -27,7 +27,7 @@ namespace Lab4_5
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Cursor customCursor = new Cursor(@"C:\Users\mdxbu\Labs\4SEMESTR\OOP4SEM\Lab4_5\Lab4_5\images\cursor2.cur");
+           Cursor customCursor = new Cursor(@"C:\Users\mdxbu\Labs\4SEMESTR\OOP4SEM\Lab4_5\Lab4_5\images\cursor2.cur");
             this.Cursor = customCursor;
             dPicker.DisplayDateStart = DateTime.Now;
             dPicker.SelectedDate = DateTime.Today;
@@ -58,6 +58,23 @@ namespace Lab4_5
                     break;
                 }
             }
+        }
+
+
+        private void ENGlang_Click(object sender, RoutedEventArgs e)
+        {
+            ResourceDictionary dict = new ResourceDictionary();
+            dict.Source = new Uri("Dictionary-en.xaml", UriKind.RelativeOrAbsolute);
+            this.Resources.MergedDictionaries.Clear();
+            this.Resources.MergedDictionaries.Add(dict);
+        }
+        private void RUlang_Click_1(object sender, RoutedEventArgs e)
+        {
+            ResourceDictionary dict = new ResourceDictionary();
+            dict.Source = new Uri("Dictionary-ru.xaml", UriKind.RelativeOrAbsolute);
+            this.Resources.MergedDictionaries.Clear();
+            this.Resources.MergedDictionaries.Add(dict);
+
         }
     }
 }

@@ -122,7 +122,7 @@ namespace Lab2
             this.SearchPanel.Width = 470;
             this.SearchPanel.Height = 230;
             this.SearchPanel.Location = new Point(150,90);
-            FileInfo fi = new FileInfo(@"C:\Users\mdxbu\Labs\4SEMESTR\OOP\Lab3\Lab2\bin\\Debug\net6.0-windows\bill.xml");
+            FileInfo fi = new FileInfo(@"C:\Users\mdxbu\Labs\4SEMESTR\OOP4SEM\Lab3\Lab2\bin\Debug\net6.0-windows\bill.xml");
             if (fi.Exists)
             {
                 var xml = new XmlSerializer(typeof(List<PersonalBill>));

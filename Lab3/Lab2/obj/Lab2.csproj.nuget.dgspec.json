@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mdxbu\\Labs\\4SEMESTR\\OOP\\Lab3\\Lab2\\Lab2.csproj": {}
+    "C:\\Users\\mdxbu\\Labs\\4SEMESTR\\OOP4SEM\\Lab3\\Lab2\\Lab2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mdxbu\\Labs\\4SEMESTR\\OOP\\Lab3\\Lab2\\Lab2.csproj": {
+    "C:\\Users\\mdxbu\\Labs\\4SEMESTR\\OOP4SEM\\Lab3\\Lab2\\Lab2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mdxbu\\Labs\\4SEMESTR\\OOP\\Lab3\\Lab2\\Lab2.csproj",
+        "projectUniqueName": "C:\\Users\\mdxbu\\Labs\\4SEMESTR\\OOP4SEM\\Lab3\\Lab2\\Lab2.csproj",
         "projectName": "Lab2",
-        "projectPath": "C:\\Users\\mdxbu\\Labs\\4SEMESTR\\OOP\\Lab3\\Lab2\\Lab2.csproj",
+        "projectPath": "C:\\Users\\mdxbu\\Labs\\4SEMESTR\\OOP4SEM\\Lab3\\Lab2\\Lab2.csproj",
         "packagesPath": "C:\\Users\\mdxbu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mdxbu\\Labs\\4SEMESTR\\OOP\\Lab3\\Lab2\\obj\\",
+        "outputPath": "C:\\Users\\mdxbu\\Labs\\4SEMESTR\\OOP4SEM\\Lab3\\Lab2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mdxbu\\AppData\\Roaming\\NuGet\\NuGet.Config",

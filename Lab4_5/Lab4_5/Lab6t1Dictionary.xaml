@@ -115,5 +115,7 @@ EventTrigger - ожидает определенного события-->
         <Setter Property="HorizontalAlignment" Value="Center"></Setter>
         <Setter Property="Foreground" Value="DarkOliveGreen"></Setter>
     </Style>
+        
+    <SolidColorBrush x:Key="Animation" Color="DarkViolet"></SolidColorBrush>
 
 </ResourceDictionary>

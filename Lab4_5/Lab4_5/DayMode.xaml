@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="MainBorderBack" Color="Beige" ></SolidColorBrush>
+    <SolidColorBrush x:Key="MainBorderBorder" Color="DarkRed"></SolidColorBrush>
+    <SolidColorBrush x:Key="MainText" Color="Black"></SolidColorBrush>
+    <SolidColorBrush x:Key="AdditionalText" Color="Black"></SolidColorBrush>
+    <ImageBrush x:Key="MainBackImage"
+                  ImageSource="C:\Users\mdxbu\Labs\4SEMESTR\OOP4SEM\Lab4_5\Lab4_5\images\bright.jpg" 
+                    />
+    <SolidColorBrush x:Key="TextBoxBack" Color="White"></SolidColorBrush>
+
+</ResourceDictionary>

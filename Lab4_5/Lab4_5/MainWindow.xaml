@@ -6,14 +6,15 @@
         xmlns:local="clr-namespace:Lab4_5"
         mc:Ignorable="d"
         Title="AWFly" Height="500" Width="850" Loaded="Window_Loaded" Icon="C:\Users\mdxbu\Labs\4SEMESTR\OOP4SEM\Lab4_5\Lab4_5\images\lul.png">
-    <Grid Background="{DynamicResource justBckground}">
+    <Grid Background="{DynamicResource MainBackImage}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <Border MinWidth="400" Margin="15,0,15,0" Background="Beige" VerticalAlignment="Center" Padding="30" MaxWidth="650" CornerRadius="10" MinHeight="290" Grid.ColumnSpan="2" Height="245">
-            
+        <Border MinWidth="400" Margin="15,0,15,0" Background="{DynamicResource MainBorderBack}" VerticalAlignment="Center" Padding="30" MaxWidth="650" CornerRadius="10" 
+                MinHeight="290" Grid.ColumnSpan="2" Height="245" BorderBrush="{DynamicResource MainBorderBorder}" BorderThickness="2">
+
             <StackPanel>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -27,25 +28,27 @@
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Orientation="Vertical">
                         <Button x:Name="ENGlang" Height="25" Width="30" Content="ENG" Margin="0 -20 0  0" Click="ENGlang_Click"
-                                Style="{DynamicResource ultraBtn}"></Button>
+                                Style="{DynamicResource ultraBtn}" Foreground="{DynamicResource AdditionalText}"></Button>
                         <Button x:Name="RUlang" Height="25" Width="30" Content="RU" Margin="0 5 0  0" Click="RUlang_Click_1"
-                                Style="{DynamicResource ultraBtn}"></Button>
+                        Foreground="{DynamicResource AdditionalText}"  Style="{DynamicResource ultraBtn}" ></Button>
                     </StackPanel>
-                    <TextBlock Text="{DynamicResource Choosepars}" FontSize="24" FontWeight="Bold" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Left" Width="590"></TextBlock>
-                    <TextBlock Grid.Row="1" Text="{DynamicResource Departure}" VerticalAlignment="Bottom" FontSize="20" FontFamily="Arial"></TextBlock>
-                    <TextBlock Grid.Row="1" Grid.Column="2" Text="{DynamicResource Destination}" Margin="-25 0 0 0" VerticalAlignment="Bottom" FontSize="20" FontFamily="Arial"></TextBlock>
+                    
+                    <TextBlock Text="{DynamicResource Choosepars}"  Foreground="{DynamicResource MainText}" FontSize="24" FontWeight="Bold" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Left" Width="590"></TextBlock>
+                    <TextBlock Grid.Row="1" Text="{DynamicResource Departure}" Foreground="{DynamicResource MainText}" VerticalAlignment="Bottom" FontSize="20" FontFamily="Arial"></TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="2" Text="{DynamicResource Destination}" Foreground="{DynamicResource MainText}" Margin="-25 0 0 0" VerticalAlignment="Bottom" FontSize="20" FontFamily="Arial"></TextBlock>
                     <StackPanel Orientation="Horizontal" Height="100px" FlowDirection="LeftToRight" Grid.ColumnSpan="2" Grid.Row="2" >
                         <TextBox x:Name="departure" Margin="0 10 50 0" VerticalAlignment="Center" Width="200px" FontSize="24px" 
                                  FontFamily="Arial Rounded MT Bold" MaxLength="20" PreviewTextInput="departure_PreviewTextInput"
-                                 Text="{Binding Text1}"/>
-                        <TextBlock Text="->" VerticalAlignment="Center" Margin="-32 0 0 0" FontSize="35" FontWeight="Black"/>
+                                 Text="{Binding Text1}" Foreground="{DynamicResource MainText}" Background="{DynamicResource TextBoxBack}" />
+                        <TextBlock Text="->" VerticalAlignment="Center" Margin="-32 0 0 0" FontSize="35" FontWeight="Black" Foreground="{DynamicResource MainText}" />
                         <TextBox x:Name="destination"  VerticalAlignment="Center" Margin="10 0 0 -9" Width="200px" FontSize="24px" 
                                  FontFamily="Arial Rounded MT Bold" MaxLength="20" PreviewTextInput="departure_PreviewTextInput"
-                                 Text="{Binding Text2}"/>
-                        <DatePicker x:Name="dPicker" Height="30px" VerticalAlignment="Center" Margin="15 0 0 -15" BorderBrush="Transparent" IsTodayHighlighted="True" ForceCursor="True" FontFamily="Verdana"/>
+                                 Text="{Binding Text2}" Foreground="{DynamicResource MainText}" Background="{DynamicResource TextBoxBack}"/>
+                        <DatePicker x:Name="dPicker" Height="30px" VerticalAlignment="Center" Margin="15 0 0 -15" BorderBrush="Transparent" 
+                                    IsTodayHighlighted="True" ForceCursor="True" FontFamily="Verdana" Foreground="{DynamicResource AdditionalText}"/>
                     </StackPanel>
                 </Grid>
-                <Button Width="150px" Height="35px" HorizontalAlignment="Center" Background="#FF80BBA6" FontWeight="Bold" Click="Button_Click">
+                <Button Width="150px" Height="35px" HorizontalAlignment="Center" Background="#FF80BBA6" FontWeight="Bold" Click="Button_Click" Foreground="{DynamicResource AdditionalText}" >
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="FontSize" Value="18"></Setter>
@@ -56,7 +59,7 @@
                                         <Condition Property="Control.IsMouseOver" Value="True"/>
                                     </MultiTrigger.Conditions>
                                     <MultiTrigger.Setters>
-                                        <Setter Property="Foreground" Value="DarkViolet"></Setter>
+                                        <Setter Property="Foreground" Value="{StaticResource Animation}"></Setter>
                                         <Setter Property="FontSize" Value="22"></Setter>
                                     </MultiTrigger.Setters>
                                 </MultiTrigger>
@@ -79,6 +82,12 @@
                     </Button.Template>
                     <TextBlock Text="{DynamicResource Search}"></TextBlock>
                 </Button>
+                <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Orientation="Horizontal">
+                    <Button x:Name="Night" Height="25" Width="40" Content="Night" Margin="0 -30 10  0" 
+                                Style="{DynamicResource ultraBtn}" Foreground="{DynamicResource AdditionalText}" Click="Night_Click"></Button>
+                    <Button x:Name="Day" Height="25" Width="40" Content="Day" Margin="0 -30 0  0" 
+                        Foreground="{DynamicResource AdditionalText}"  Style="{DynamicResource ultraBtn}" Click="Day_Click" ></Button>
+                </StackPanel>
             </StackPanel>
 
         </Border>

@@ -76,5 +76,22 @@ namespace Lab4_5
             this.Resources.MergedDictionaries.Add(dict);
 
         }
+
+        private void Night_Click(object sender, RoutedEventArgs e)
+        {
+            var uri = new Uri(@"NightMode.xaml", UriKind.Relative);
+            ResourceDictionary resourceDict = Application.LoadComponent(uri) as ResourceDictionary;
+            Application.Current.Resources.Clear();
+            Application.Current.Resources.MergedDictionaries.Add(resourceDict);
+        }
+
+        private void Day_Click(object sender, RoutedEventArgs e)
+        {
+            var uri = new Uri(@"DayMode.xaml", UriKind.Relative);
+            ResourceDictionary resourceDict = Application.LoadComponent(uri) as ResourceDictionary;
+            Application.Current.Resources.Clear();
+            Application.Current.Resources.MergedDictionaries.Add(resourceDict);
+
+        }
     }
 }

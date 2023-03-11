@@ -10,6 +10,8 @@
                 <ResourceDictionary Source="Dictionary-ru.xaml"/>
                 <ResourceDictionary Source="Styles.xaml"/>
                 <ResourceDictionary Source="Lab6t1Dictionary.xaml"/>
+                <ResourceDictionary Source="NightMode.xaml"/>
+                <ResourceDictionary Source="DayMode.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -27,10 +28,11 @@ namespace Lab4_5
         string depCity;
         string desCity;
         DateTime depT;
+
         public Results(string depc, string desc, DateTime dt)
         {
-/*           Cursor c = new Cursor("C:\\Users\\mdxbu\\Labs\\4SEMESTR\\OOP4SEM\\Lab4_5\\Lab4_5\\images\\cursor.cur");
-            this.Cursor = c;*/
+            /*           Cursor c = new Cursor("C:\\Users\\mdxbu\\Labs\\4SEMESTR\\OOP4SEM\\Lab4_5\\Lab4_5\\images\\cursor.cur");
+                        this.Cursor = c;*/
             depCity = depc;
             desCity = desc;
             depT = Convert.ToDateTime(dt);
@@ -43,7 +45,7 @@ namespace Lab4_5
             {
                 all_flights = _fos.LoadData();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 Close();
@@ -83,17 +85,25 @@ namespace Lab4_5
         private void desDep_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             foreach (char c in e.Text)
-    {
-        if (!Char.IsLetter(c))
-        {
-            e.Handled = true;
-            break;
-        }
-    }
+            {
+                if (!Char.IsLetter(c))
+                {
+                    e.Handled = true;
+                    break;
+                }
+            }
         }
 
         private void CreateFlight_Click(object sender, RoutedEventArgs e)
         {
+
+            if (depFrom.Text == "Minsk" || desTo.Text == "Minsk" || desTo.Text == depFrom.Text)
+            {
+                MessageBox.Show("Ошибка ввода локации", "Внимание!", MessageBoxButton.OK, MessageBoxImage.Information);
+                depFrom.Text = "";
+                desTo.Text = "";
+                return;
+            }
             fl.DepartureCity = depFrom.Text;
             fl.DestinationCity = desTo.Text;
             fl.Num = Convert.ToInt32(NumBox.Text);
@@ -111,7 +121,7 @@ namespace Lab4_5
                 {
                     _fos.SaveData(all_flights);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
@@ -120,15 +130,19 @@ namespace Lab4_5
 
         private void deleteFlight_Click(object sender, RoutedEventArgs e)
         {
-            var  res = all_flights.Where(x => x.Num == Convert.ToInt32(numberToDelete.Text));
+            var res = all_flights.Where(x => x.Num == Convert.ToInt32(numberToDelete.Text));
             Flight f = new Flight();
-            foreach(var el in res)
+            foreach (var el in res)
             {
                 f = res.First();
             }
-            if(f != null)
+            if (f.Num == Convert.ToInt32(numberToDelete.Text))
             {
                 all_flights.Remove(f);
+            }
+            else
+            {
+                MessageBox.Show("Рейс с таким номером отсутствует","Что-то пошло не так",MessageBoxButton.OK, MessageBoxImage.Question);
             }
             try
             {
@@ -179,5 +193,21 @@ namespace Lab4_5
             this.Resources.MergedDictionaries.Clear();
             this.Resources.MergedDictionaries.Add(dict);
         }
+/*        private void day_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Night_Click(object sender, RoutedEventArgs e)
+        {
+            // Удаление текущего словаря ресурсов из коллекции MergedDictionaries
+            Application.Current.Resources.MergedDictionaries.RemoveAt(0);
+
+            // Добавление нового словаря ресурсов
+            ResourceDictionary newDictionary = new ResourceDictionary();
+            newDictionary.Source = new Uri("NightTheme.xaml", UriKind.Relative);
+            Application.Current.Resources.MergedDictionaries.Add(newDictionary);
+
+        }*/
     }
 }

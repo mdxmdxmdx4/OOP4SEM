@@ -20,4 +20,5 @@
     <System:String x:Key="Duration">В пути</System:String>
     <System:String x:Key="Date">Дата</System:String>
     <System:String x:Key="AddRecord">Добавить запись</System:String>
+    <System:String x:Key="NotSupp">Не поддерживается</System:String>
 </ResourceDictionary>

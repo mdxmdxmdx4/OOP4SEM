@@ -9,6 +9,7 @@
                 <ResourceDictionary Source="Dictionary-en.xaml"/>
                 <ResourceDictionary Source="Dictionary-ru.xaml"/>
                 <ResourceDictionary Source="Styles.xaml"/>
+                <ResourceDictionary Source="Lab6t1Dictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

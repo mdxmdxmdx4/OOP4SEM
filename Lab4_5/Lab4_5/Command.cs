@@ -1,64 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace Lab4_5
 {
-    public class Command
+    public abstract class Command
     {
-        private static RoutedUICommand _saveCommand;
-        private static RoutedUICommand _loadCommand;
-        private static RoutedUICommand _searchCommand;
-        private static RoutedUICommand _deleteCommand;
-        private static RoutedUICommand _updateCommand;
-        private static RoutedUICommand _addCommand;
-        private static RoutedUICommand _filterCommand;
+        public abstract void Execute();
+        public abstract void Undo();
+    }
 
-        static Command()
+    public class AddCommand : Command
+    {
+        private readonly ObservableCollection<Flight> _collection;
+        private readonly Flight _item;
+
+        public AddCommand(ObservableCollection<Flight> collection, Flight item)
         {
-
-            _saveCommand = new RoutedUICommand("Save", "SaveCommand", typeof(Command));
-            _loadCommand = new RoutedUICommand("Load", "LoadCommand", typeof(Command));
-            _searchCommand = new RoutedUICommand("Search", "SearchCommand", typeof(Command));
-            _deleteCommand = new RoutedUICommand("Delete", "DeleteCommand", typeof(Command));
-            _updateCommand = new RoutedUICommand("Update", "UpdateCommand", typeof(Command));
-            _addCommand = new RoutedUICommand("Add", "AddCommand", typeof(Command));
-            _filterCommand = new RoutedUICommand("Filter", "filterCommand", typeof(Command));
-
+            _collection = collection;
+            _item = item;
         }
 
-        public static RoutedUICommand SaveCommand
+        public override void Execute()
         {
-            get { return _saveCommand; }
+            _collection.Add(_item);
         }
 
-        public static RoutedUICommand LoadCommand
+        public override void Undo()
         {
-            get { return _loadCommand; }
+            _collection.Remove(_item);
         }
-
-        public static RoutedUICommand SearchCommand
-        {
-            get { return _searchCommand; }
-        }
-
-        public static RoutedUICommand DeleteCommand
-        {
-            get { return _deleteCommand; }
-        }
-
-        public static RoutedUICommand UpdateCommand
-        {
-            get { return _updateCommand; }
-        }
-
-        public static RoutedUICommand AddCommand
-        {
-            get { return _addCommand; }
-        }
-
     }
 }

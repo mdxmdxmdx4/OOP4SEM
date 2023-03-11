@@ -21,4 +21,5 @@
     <System:String x:Key="Duration">Duration</System:String>
     <System:String x:Key="Date">Date</System:String>
     <System:String x:Key="AddRecord">Add record</System:String>
+    <System:String x:Key="NotSupp">Is not supported</System:String>
 </ResourceDictionary>

@@ -3,9 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d"
-        Title="Results" Height="750" Width="800" Icon="C:\Users\mdxbu\Labs\4SEMESTR\OOP4SEM\Lab4_5\Lab4_5\images\lul.png" Background="WhiteSmoke" Loaded="Window_Loaded">
-    <Grid>
+        Title="Results" Height="750" Width="800" Icon="C:\Users\mdxbu\Labs\4SEMESTR\OOP4SEM\Lab4_5\Lab4_5\images\lul.png" Background="WhiteSmoke" Loaded="Window_Loaded"
+        ToolTipService.ShowOnDisabled="True"
+        xmlns:local="clr-namespace:Lab4_5"
+        xmlns:Control="clr-namespace:Lab4_5">
+    <Grid Background="Wheat">
         <StackPanel>
             <Button x:Name="ENGbutton" Height="30" Width="30" Style="{DynamicResource ultraBtn}"
                     HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5" Content="ENG" Click="ENGbutton_Click"/>
@@ -28,11 +30,33 @@
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Grid.Column="0">
                             <TextBlock Text="{DynamicResource Departure}" Margin="3"></TextBlock>
-                            <TextBox x:Name="depFrom" Margin="3" PreviewTextInput="desDep_PreviewTextInput"></TextBox>
+                            <TextBox x:Name="depFrom" Margin="3" PreviewTextInput="desDep_PreviewTextInput">
+                                <TextBox.Style>
+                                    <Style TargetType="TextBox">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Text, ElementName=depFrom}" Value="Minsk">
+                                                <Setter Property="Background" Value="IndianRed"></Setter>
+                                                <Setter Property="ToolTip" Value="Не поддерживатся"></Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
                         </StackPanel>
                         <StackPanel Grid.Row="0" Grid.Column="1">
                             <TextBlock Text="{DynamicResource Destination}" Margin="3"></TextBlock>
-                            <TextBox x:Name="desTo" Margin="3"  PreviewTextInput="desDep_PreviewTextInput"></TextBox>
+                            <TextBox x:Name="desTo" Margin="3"  PreviewTextInput="desDep_PreviewTextInput">
+                                <TextBox.Style>
+                                    <Style TargetType="TextBox">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Text, ElementName=desTo}" Value="Minsk">
+                                                <Setter Property="Background" Value="IndianRed"></Setter>
+                                                <Setter Property="ToolTip" Value="Не поддерживатся"></Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
                         </StackPanel>
                         <StackPanel Grid.Row="0" Grid.Column="2">
                             <TextBlock Text="{DynamicResource Price}" Margin="3"></TextBlock>
@@ -55,17 +79,21 @@
                     </Grid>
                 </TabItem>
                 <TabItem Header="{DynamicResource DelRecord}">
-                    <Grid Background="LightYellow">
+                    <Grid Background="{StaticResource NotCommonResBackgroud}">
                         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <TextBlock FontSize="20" FontFamily="Arial Rounded MT Bold" Text="{DynamicResource NumToDelete}"></TextBlock>
+                            <TextBlock FontSize="20" FontFamily="Arial Rounded MT Bold" Text="{DynamicResource NumToDelete}" Foreground="GhostWhite"></TextBlock>
                             <TextBox x:Name="numberToDelete" Margin="0 10 0 0" Width="100"  PreviewTextInput="HoursInFlight_PreviewTextInput"></TextBox>
-                            <Button x:Name="deleteFlight" Height="30" Width="150" Margin="10" Background="DarkOrange" Content="{DynamicResource Delete}" FontWeight="Bold" Click="deleteFlight_Click"></Button>
+                            <local:MyButton Margin="10" Height="40" Width="150" Click="deleteFlight_Click">
+                                <TextBlock Text="{DynamicResource Delete}" FontWeight="Bold"></TextBlock>
+                           </local:MyButton>
                         </StackPanel>
                     </Grid>
                 </TabItem>
                 <TabItem Header="{DynamicResource Show all}">
-                    <Grid Background="LightYellow">
-                        <Button Height="45" Width="230" Background="Azure" BorderBrush="ForestGreen" Content="{DynamicResource Show all}" FontSize="22" FontWeight="Bold" Click="Button_Click"></Button>
+                    <Grid Background="{StaticResource CommonResBackgroud}">
+                        <Button Height="45" Width="230" Background="Azure" BorderBrush="ForestGreen" Content="{DynamicResource Show all}" FontSize="22" FontWeight="Bold" Click="Button_Click"
+                                Style="{DynamicResource EventAnimation}">
+                        </Button>
                     </Grid>
                 </TabItem>
                 <TabItem Header="{DynamicResource Filter}">

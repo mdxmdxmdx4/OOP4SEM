@@ -8,5 +8,8 @@
                   ImageSource="C:\Users\mdxbu\Labs\4SEMESTR\OOP4SEM\Lab4_5\Lab4_5\images\dark.jpg" 
                     />
     <SolidColorBrush x:Key="TextBoxBack" Color="Black"></SolidColorBrush>
+    <SolidColorBrush x:Key="ResultGrid" Color="DarkSlateGray"></SolidColorBrush>
+    <SolidColorBrush x:Key="ResultBorder" Color="DimGray"></SolidColorBrush>
+    <SolidColorBrush x:Key="ResultBorderBorder" Color="FloralWhite"></SolidColorBrush>
 
 </ResourceDictionary>

@@ -193,21 +193,22 @@ namespace Lab4_5
             this.Resources.MergedDictionaries.Clear();
             this.Resources.MergedDictionaries.Add(dict);
         }
-/*        private void day_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void Night_Click(object sender, RoutedEventArgs e)
         {
-            // Удаление текущего словаря ресурсов из коллекции MergedDictionaries
-            Application.Current.Resources.MergedDictionaries.RemoveAt(0);
+            var uri = new Uri(@"NightMode.xaml", UriKind.Relative);
+            ResourceDictionary resourceDict = Application.LoadComponent(uri) as ResourceDictionary;
+            Application.Current.Resources.Clear();
+            Application.Current.Resources.MergedDictionaries.Add(resourceDict);
+        }
 
-            // Добавление нового словаря ресурсов
-            ResourceDictionary newDictionary = new ResourceDictionary();
-            newDictionary.Source = new Uri("NightTheme.xaml", UriKind.Relative);
-            Application.Current.Resources.MergedDictionaries.Add(newDictionary);
+        private void Day_Click(object sender, RoutedEventArgs e)
+        {
+            var uri = new Uri(@"DayMode.xaml", UriKind.Relative);
+            ResourceDictionary resourceDict = Application.LoadComponent(uri) as ResourceDictionary;
+            Application.Current.Resources.Clear();
+            Application.Current.Resources.MergedDictionaries.Add(resourceDict);
 
-        }*/
+        }
     }
 }

@@ -9,4 +9,8 @@
                     />
     <SolidColorBrush x:Key="TextBoxBack" Color="White"></SolidColorBrush>
 
+    <SolidColorBrush x:Key="ResultGrid" Color="Wheat"></SolidColorBrush>
+    <SolidColorBrush x:Key="ResultBorder" Color="LightYellow"></SolidColorBrush>
+    <SolidColorBrush x:Key="ResultBorderBorder" Color="Teal"></SolidColorBrush>
+
 </ResourceDictionary>

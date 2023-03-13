@@ -8,6 +8,9 @@
         xmlns:local="clr-namespace:Lab4_5"
         xmlns:Control="clr-namespace:Lab4_5">
     <Grid Background="{DynamicResource ResultGrid}">
+        <local:UC CustomBackground="Green" Height="50" Width="100" HorizontalAlignment="Left" Margin="20 -260 0 0">
+            <TextBlock Text="MegaCUSTOM" Foreground="WhiteSmoke" FontWeight="Bold"></TextBlock>
+        </local:UC>
         <StackPanel>
             <Button x:Name="ENGbutton" Height="30" Width="30" Style="{DynamicResource ultraBtn}" Foreground="{DynamicResource AdditionalText}"
                     HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5" Content="ENG" Click="ENGbutton_Click"/>
@@ -94,7 +97,7 @@
                                      PreviewTextInput="HoursInFlight_PreviewTextInput" Background="{DynamicResource TextBoxBack}"></TextBox>
                             <local:MyButton Margin="10" Height="40" Width="150" Click="deleteFlight_Click">
                                 <TextBlock Text="{DynamicResource Delete}" FontWeight="Bold"></TextBlock>
-                           </local:MyButton>
+                            </local:MyButton>
                         </StackPanel>
                     </Grid>
                 </TabItem>

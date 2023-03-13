@@ -28,3 +28,5 @@ C:\Users\mdxbu\Labs\4SEMESTR\OOP4SEM\Lab4_5\Lab4_5\obj\Debug\GeneratedInternalTy
 C:\Users\mdxbu\Labs\4SEMESTR\OOP4SEM\Lab4_5\Lab4_5\obj\Debug\Themes\Generic.baml
 C:\Users\mdxbu\Labs\4SEMESTR\OOP4SEM\Lab4_5\Lab4_5\obj\Debug\DayMode.baml
 C:\Users\mdxbu\Labs\4SEMESTR\OOP4SEM\Lab4_5\Lab4_5\obj\Debug\NightMode.baml
+C:\Users\mdxbu\Labs\4SEMESTR\OOP4SEM\Lab4_5\Lab4_5\obj\Debug\UC.g.cs
+C:\Users\mdxbu\Labs\4SEMESTR\OOP4SEM\Lab4_5\Lab4_5\obj\Debug\UC.baml

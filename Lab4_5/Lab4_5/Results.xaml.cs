@@ -26,6 +26,10 @@ namespace Lab4_5
         private BindingList<Flight> all_flights = new BindingList<Flight>();
         private BindingList<Flight> searchNsort = new BindingList<Flight>();
         private Flight fl = new Flight();
+        private Flight lastAdded = new Flight();
+        private Flight LastRemoved = new Flight();
+        string lastAction = "";
+        string undoAction;
         string depCity;
         string desCity;
         DateTime depT;
@@ -117,6 +121,8 @@ namespace Lab4_5
             }
             else
             {
+                lastAdded = fl;
+                lastAction = "add";
                 all_flights.Add(fl);
                 try
                 {
@@ -131,6 +137,8 @@ namespace Lab4_5
 
         private void deleteFlight_Click(object sender, RoutedEventArgs e)
         {
+            if (numberToDelete.Text == null || numberToDelete.Text == "")
+                return;
             var res = all_flights.Where(x => x.Num == Convert.ToInt32(numberToDelete.Text));
             Flight f = new Flight();
             foreach (var el in res)
@@ -139,17 +147,19 @@ namespace Lab4_5
             }
             if (f.Num == Convert.ToInt32(numberToDelete.Text))
             {
+                LastRemoved = f;
+                lastAction = "del";
                 all_flights.Remove(f);
             }
             else
             {
-                MessageBox.Show("Рейс с таким номером отсутствует","Что-то пошло не так",MessageBoxButton.OK, MessageBoxImage.Question);
+                MessageBox.Show("Рейс с таким номером отсутствует", "Что-то пошло не так", MessageBoxButton.OK, MessageBoxImage.Question);
             }
             try
             {
                 _fos.SaveData(all_flights);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -164,12 +174,12 @@ namespace Lab4_5
         {
             var res = all_flights
                 .Where(x => (x.Price >= Convert.ToInt32(priceStart.Text)) && (x.Price <= Convert.ToInt32(priceEnd.Text)))
-                .Where(x=> x.DepartureCity == depFilter.Text)
-                .Where(x=> (x.DepTime >= Convert.ToDateTime(dPickerFrom.Text)) && (x.DepTime <= Convert.ToDateTime(dPickerTo.Text)));
-            if(res.Count() > 0)
+                .Where(x => x.DepartureCity == depFilter.Text)
+                .Where(x => (x.DepTime >= Convert.ToDateTime(dPickerFrom.Text)) && (x.DepTime <= Convert.ToDateTime(dPickerTo.Text)));
+            if (res.Count() > 0)
             {
                 searchNsort.Clear();
-                foreach(var el in res)
+                foreach (var el in res)
                 {
                     searchNsort.Add(el);
                 }
@@ -210,6 +220,73 @@ namespace Lab4_5
             Application.Current.Resources.Clear();
             Application.Current.Resources.MergedDictionaries.Add(resourceDict);
 
+        }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            MessageBox.Show("Вы использовали кастомную команду для закрытия данного окна", "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
+            Close();
+
+        }
+
+        private void CommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void Undo_Click(object sender, RoutedEventArgs e)
+        {
+            //почти доведено до идеала. Добавить isEnabled, проверку на null/"" везде + обнуление действий и т.д
+            if (lastAction == null || lastAction == "")
+            {
+                MessageBox.Show("Действие вызвало ошибку", "ERROR!", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+
+            }
+            if (lastAction == "del")
+            {
+                all_flights.Add(LastRemoved);
+                lastAdded = LastRemoved;
+                undoAction = "ADDED";
+                lastAction = "";
+            }
+            else if (lastAction == "add")
+            {
+                all_flights.Remove(lastAdded);
+                LastRemoved = lastAdded;
+                undoAction = "REMOVED";
+                lastAction = "";
+            }
+        }
+
+        private void Redo_Click(object sender, RoutedEventArgs e)
+        {
+            if (undoAction == null || undoAction == "")
+            {
+                {
+                    MessageBox.Show("Действие вызвало ошибку", "ERROR!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                return;
+            }
+
+            if (undoAction == "REMOVED")
+            {
+                all_flights.Add(LastRemoved);
+                lastAdded = LastRemoved;
+                undoAction = "";
+                lastAction = "add";
+            }
+            else if (undoAction == "ADDED")
+            {
+                all_flights.Remove(lastAdded);
+                LastRemoved = lastAdded;
+                undoAction = "";
+                lastAction = "del";
+            }
+        }
+        private void CustomButton_Click(object sender, RoutedEventArgs e)
+        {
+            ParentGrid.Background = System.Windows.Media.Brushes.Azure;
         }
     }
 }

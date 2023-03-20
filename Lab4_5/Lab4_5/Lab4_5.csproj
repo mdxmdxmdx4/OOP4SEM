@@ -61,6 +61,7 @@
     </ApplicationDefinition>
     <Compile Include="Command.cs" />
     <Compile Include="CommandManager.cs" />
+    <Compile Include="CustomCommands.cs" />
     <Compile Include="FileIOService.cs" />
     <Compile Include="Flight.cs" />
     <Compile Include="MyButton.cs" />

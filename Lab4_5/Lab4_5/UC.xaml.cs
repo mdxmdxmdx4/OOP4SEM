@@ -62,6 +62,7 @@ namespace Lab4_5
         public UC():base()
         {
             Click += MyButton_Click;
+
         }
 
         private void MyButton_Click(object sender, RoutedEventArgs e)
@@ -73,6 +74,43 @@ namespace Lab4_5
             CustomBackground = newColor;
         }
 
+        public static readonly RoutedEvent CustomClickEvent = EventManager.RegisterRoutedEvent(
+        "CustomClick", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(UC));
+
+        public event RoutedEventHandler CustomClick
+        {
+            add { AddHandler(CustomClickEvent, value); }
+            remove { RemoveHandler(CustomClickEvent, value); }
+        }
+
+        private void RaiseCustomClickEvent()
+        {
+            RoutedEventArgs newEventArgs = new RoutedEventArgs(CustomClickEvent);
+            RaiseEvent(newEventArgs);
+        }
+
+        protected override void OnClick()
+        {
+            RaiseCustomClickEvent();
+            base.OnClick();
+        }
+
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        {
+            RoutedEventArgs args = new RoutedEventArgs(CustomClickEvent);
+            args.Source = e.Source;
+            RaiseEvent(args);
+            base.OnMouseLeftButtonDown(e);
+            
+        }
+
+        protected override void OnMouseDown(MouseButtonEventArgs e)
+        {
+            RoutedEventArgs args = new RoutedEventArgs(CustomClickEvent);
+            args.Source = e.Source;
+            RaiseEvent(args);
+            base.OnMouseDown(e);
+        }
 
     }
 }

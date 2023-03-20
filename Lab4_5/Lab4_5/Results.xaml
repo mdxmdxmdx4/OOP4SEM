@@ -7,10 +7,22 @@
         ToolTipService.ShowOnDisabled="True"
         xmlns:local="clr-namespace:Lab4_5"
         xmlns:Control="clr-namespace:Lab4_5">
-    <Grid Background="{DynamicResource ResultGrid}">
-        <local:UC CustomBackground="Green" Height="50" Width="100" HorizontalAlignment="Left" Margin="20 -260 0 0">
-            <TextBlock Text="MegaCUSTOM" Foreground="WhiteSmoke" FontWeight="Bold"></TextBlock>
-        </local:UC>
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static local:CustomCommands.MyCustomCommand}" Executed="CommandBinding_Executed" CanExecute="CommandBinding_CanExecute"
+                        ></CommandBinding>
+    </Window.CommandBindings>
+    <Grid Background="{DynamicResource ResultGrid}" x:Name="ParentGrid">
+        <Button HorizontalAlignment="Left" Height="60" Margin="27 -260 0 0" Click="CustomButton_Click">
+            <local:UC CustomBackground="Green" x:Name="CustomButton" Height="45" Width="100" HorizontalAlignment="Left"
+                 >
+                <TextBlock Text="MegaCUSTOM" Foreground="WhiteSmoke" FontWeight="Bold"
+                       ></TextBlock>
+            </local:UC>
+        </Button>
+        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 -290 20 0">
+            <Button x:Name="Undo" Height="30" Width="40" Margin="0 0 0 10" Content="Undo"  Style="{DynamicResource ultraBtn}" Foreground="{DynamicResource AdditionalText}" Click="Undo_Click" BorderThickness="2"></Button>
+            <Button  x:Name="Redo" Height="30" Width="40" Content="Redo"  Style="{DynamicResource ultraBtn}" Foreground="{DynamicResource AdditionalText}" Click="Redo_Click" BorderThickness="2"></Button>
+        </StackPanel>
         <StackPanel>
             <Button x:Name="ENGbutton" Height="30" Width="30" Style="{DynamicResource ultraBtn}" Foreground="{DynamicResource AdditionalText}"
                     HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5" Content="ENG" Click="ENGbutton_Click"/>
@@ -39,7 +51,7 @@
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Grid.Column="0">
                             <TextBlock Text="{DynamicResource Departure}" Margin="3" Foreground="{DynamicResource MainText}"></TextBlock>
-                            <TextBox x:Name="depFrom" Margin="3" PreviewTextInput="desDep_PreviewTextInput" Background="{DynamicResource TextBoxBack}" Foreground="{DynamicResource MainText}">
+                            <TextBox x:Name="depFrom" Margin="3" PreviewTextInput="desDep_PreviewTextInput">
                                 <TextBox.Style>
                                     <Style TargetType="TextBox">
                                         <Style.Triggers>
@@ -54,7 +66,7 @@
                         </StackPanel>
                         <StackPanel Grid.Row="0" Grid.Column="1">
                             <TextBlock Text="{DynamicResource Destination}" Margin="3" Foreground="{DynamicResource MainText}"></TextBlock>
-                            <TextBox x:Name="desTo" Margin="3"  PreviewTextInput="desDep_PreviewTextInput" Background="{DynamicResource TextBoxBack}" Foreground="{DynamicResource MainText}">
+                            <TextBox x:Name="desTo" Margin="3"  PreviewTextInput="desDep_PreviewTextInput">
                                 <TextBox.Style>
                                     <Style TargetType="TextBox">
                                         <Style.Triggers>

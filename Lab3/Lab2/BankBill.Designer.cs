@@ -30,16 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BankBill));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.SearchConstructorPanel = new System.Windows.Forms.Panel();
-            this.forType = new System.Windows.Forms.TextBox();
-            this.forBalance = new System.Windows.Forms.TextBox();
-            this.forName = new System.Windows.Forms.TextBox();
-            this.ConstrButton = new System.Windows.Forms.Button();
-            this.cbType = new System.Windows.Forms.CheckBox();
-            this.cbBalance = new System.Windows.Forms.CheckBox();
-            this.cbName = new System.Windows.Forms.CheckBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.OpenMenu = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripDropDownButton();
@@ -57,6 +47,16 @@
             this.PinButton = new System.Windows.Forms.ToolStripButton();
             this.NextBill = new System.Windows.Forms.ToolStripButton();
             this.SearchPanel = new System.Windows.Forms.Panel();
+            this.SearchConstructorPanel = new System.Windows.Forms.Panel();
+            this.forType = new System.Windows.Forms.TextBox();
+            this.forBalance = new System.Windows.Forms.TextBox();
+            this.forName = new System.Windows.Forms.TextBox();
+            this.ConstrButton = new System.Windows.Forms.Button();
+            this.cbType = new System.Windows.Forms.CheckBox();
+            this.cbBalance = new System.Windows.Forms.CheckBox();
+            this.cbName = new System.Windows.Forms.CheckBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.BeginSearch = new System.Windows.Forms.Button();
             this.searchInput = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -108,9 +108,9 @@
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1.SuspendLayout();
-            this.SearchConstructorPanel.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SearchPanel.SuspendLayout();
+            this.SearchConstructorPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -154,119 +154,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(811, 913);
             this.panel1.TabIndex = 0;
-            // 
-            // SearchConstructorPanel
-            // 
-            this.SearchConstructorPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.SearchConstructorPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SearchConstructorPanel.Controls.Add(this.forType);
-            this.SearchConstructorPanel.Controls.Add(this.forBalance);
-            this.SearchConstructorPanel.Controls.Add(this.forName);
-            this.SearchConstructorPanel.Controls.Add(this.ConstrButton);
-            this.SearchConstructorPanel.Controls.Add(this.cbType);
-            this.SearchConstructorPanel.Controls.Add(this.cbBalance);
-            this.SearchConstructorPanel.Controls.Add(this.cbName);
-            this.SearchConstructorPanel.Controls.Add(this.label3);
-            this.SearchConstructorPanel.Controls.Add(this.label2);
-            this.SearchConstructorPanel.Location = new System.Drawing.Point(142, 77);
-            this.SearchConstructorPanel.Name = "SearchConstructorPanel";
-            this.SearchConstructorPanel.Size = new System.Drawing.Size(515, 345);
-            this.SearchConstructorPanel.TabIndex = 33;
-            this.SearchConstructorPanel.Visible = false;
-            // 
-            // forType
-            // 
-            this.forType.Enabled = false;
-            this.forType.Location = new System.Drawing.Point(308, 219);
-            this.forType.Name = "forType";
-            this.forType.Size = new System.Drawing.Size(153, 27);
-            this.forType.TabIndex = 10;
-            this.forType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
-            // 
-            // forBalance
-            // 
-            this.forBalance.Enabled = false;
-            this.forBalance.Location = new System.Drawing.Point(308, 156);
-            this.forBalance.Name = "forBalance";
-            this.forBalance.Size = new System.Drawing.Size(153, 27);
-            this.forBalance.TabIndex = 9;
-            this.forBalance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
-            // 
-            // forName
-            // 
-            this.forName.Enabled = false;
-            this.forName.Location = new System.Drawing.Point(308, 89);
-            this.forName.Name = "forName";
-            this.forName.Size = new System.Drawing.Size(153, 27);
-            this.forName.TabIndex = 7;
-            this.forName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
-            // 
-            // ConstrButton
-            // 
-            this.ConstrButton.Location = new System.Drawing.Point(202, 304);
-            this.ConstrButton.Name = "ConstrButton";
-            this.ConstrButton.Size = new System.Drawing.Size(117, 29);
-            this.ConstrButton.TabIndex = 6;
-            this.ConstrButton.Text = "Выполнить";
-            this.ConstrButton.UseVisualStyleBackColor = true;
-            this.ConstrButton.Click += new System.EventHandler(this.ConstrButton_Click);
-            // 
-            // cbType
-            // 
-            this.cbType.AutoSize = true;
-            this.cbType.Location = new System.Drawing.Point(61, 219);
-            this.cbType.Name = "cbType";
-            this.cbType.Size = new System.Drawing.Size(108, 24);
-            this.cbType.TabIndex = 5;
-            this.cbType.Text = "Тип вклада";
-            this.cbType.UseVisualStyleBackColor = true;
-            this.cbType.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // cbBalance
-            // 
-            this.cbBalance.AutoSize = true;
-            this.cbBalance.Location = new System.Drawing.Point(61, 154);
-            this.cbBalance.Name = "cbBalance";
-            this.cbBalance.Size = new System.Drawing.Size(80, 24);
-            this.cbBalance.TabIndex = 4;
-            this.cbBalance.Text = "Баланс";
-            this.cbBalance.UseVisualStyleBackColor = true;
-            this.cbBalance.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // cbName
-            // 
-            this.cbName.AutoSize = true;
-            this.cbName.Location = new System.Drawing.Point(61, 92);
-            this.cbName.Name = "cbName";
-            this.cbName.Size = new System.Drawing.Size(95, 24);
-            this.cbName.TabIndex = 2;
-            this.cbName.Text = "Фамилия";
-            this.cbName.UseVisualStyleBackColor = true;
-            this.cbName.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label3.Font = new System.Drawing.Font("Segoe UI Black", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
-            this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(485, -1);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(30, 31);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Х";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Lucida Fax", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(160, 26);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(219, 25);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Конструктор поиска";
             // 
             // OpenMenu
             // 
@@ -314,35 +201,35 @@
             // конструкторToolStripMenuItem1
             // 
             this.конструкторToolStripMenuItem1.Name = "конструкторToolStripMenuItem1";
-            this.конструкторToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.конструкторToolStripMenuItem1.Size = new System.Drawing.Size(180, 26);
             this.конструкторToolStripMenuItem1.Text = "Конструктор";
             this.конструкторToolStripMenuItem1.Click += new System.EventHandler(this.конструкторToolStripMenuItem_Click);
             // 
             // поФамилииToolStripMenuItem1
             // 
             this.поФамилииToolStripMenuItem1.Name = "поФамилииToolStripMenuItem1";
-            this.поФамилииToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.поФамилииToolStripMenuItem1.Size = new System.Drawing.Size(180, 26);
             this.поФамилииToolStripMenuItem1.Text = "По фамилии";
             this.поФамилииToolStripMenuItem1.Click += new System.EventHandler(this.SearchToolStripMenuItem_Click);
             // 
             // поСчетаToolStripMenuItem
             // 
             this.поСчетаToolStripMenuItem.Name = "поСчетаToolStripMenuItem";
-            this.поСчетаToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.поСчетаToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
             this.поСчетаToolStripMenuItem.Text = "По № счёта";
             this.поСчетаToolStripMenuItem.Click += new System.EventHandler(this.SearchToolStripMenuItem_Click);
             // 
             // балансToolStripMenuItem1
             // 
             this.балансToolStripMenuItem1.Name = "балансToolStripMenuItem1";
-            this.балансToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.балансToolStripMenuItem1.Size = new System.Drawing.Size(180, 26);
             this.балансToolStripMenuItem1.Text = "Баланс";
             this.балансToolStripMenuItem1.Click += new System.EventHandler(this.SearchToolStripMenuItem_Click);
             // 
             // типВкладаToolStripMenuItem2
             // 
             this.типВкладаToolStripMenuItem2.Name = "типВкладаToolStripMenuItem2";
-            this.типВкладаToolStripMenuItem2.Size = new System.Drawing.Size(224, 26);
+            this.типВкладаToolStripMenuItem2.Size = new System.Drawing.Size(180, 26);
             this.типВкладаToolStripMenuItem2.Text = "Тип вклада";
             this.типВкладаToolStripMenuItem2.Click += new System.EventHandler(this.SearchToolStripMenuItem_Click);
             // 
@@ -438,6 +325,119 @@
             this.SearchPanel.Size = new System.Drawing.Size(81, 225);
             this.SearchPanel.TabIndex = 31;
             this.SearchPanel.Visible = false;
+            // 
+            // SearchConstructorPanel
+            // 
+            this.SearchConstructorPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.SearchConstructorPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SearchConstructorPanel.Controls.Add(this.forType);
+            this.SearchConstructorPanel.Controls.Add(this.forBalance);
+            this.SearchConstructorPanel.Controls.Add(this.forName);
+            this.SearchConstructorPanel.Controls.Add(this.ConstrButton);
+            this.SearchConstructorPanel.Controls.Add(this.cbType);
+            this.SearchConstructorPanel.Controls.Add(this.cbBalance);
+            this.SearchConstructorPanel.Controls.Add(this.cbName);
+            this.SearchConstructorPanel.Controls.Add(this.label3);
+            this.SearchConstructorPanel.Controls.Add(this.label2);
+            this.SearchConstructorPanel.Location = new System.Drawing.Point(130, 61);
+            this.SearchConstructorPanel.Name = "SearchConstructorPanel";
+            this.SearchConstructorPanel.Size = new System.Drawing.Size(518, 345);
+            this.SearchConstructorPanel.TabIndex = 33;
+            this.SearchConstructorPanel.Visible = false;
+            // 
+            // forType
+            // 
+            this.forType.Enabled = false;
+            this.forType.Location = new System.Drawing.Point(308, 219);
+            this.forType.Name = "forType";
+            this.forType.Size = new System.Drawing.Size(153, 27);
+            this.forType.TabIndex = 10;
+            this.forType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            // 
+            // forBalance
+            // 
+            this.forBalance.Enabled = false;
+            this.forBalance.Location = new System.Drawing.Point(308, 156);
+            this.forBalance.Name = "forBalance";
+            this.forBalance.Size = new System.Drawing.Size(153, 27);
+            this.forBalance.TabIndex = 9;
+            this.forBalance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            // 
+            // forName
+            // 
+            this.forName.Enabled = false;
+            this.forName.Location = new System.Drawing.Point(308, 89);
+            this.forName.Name = "forName";
+            this.forName.Size = new System.Drawing.Size(153, 27);
+            this.forName.TabIndex = 7;
+            this.forName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            // 
+            // ConstrButton
+            // 
+            this.ConstrButton.Location = new System.Drawing.Point(202, 304);
+            this.ConstrButton.Name = "ConstrButton";
+            this.ConstrButton.Size = new System.Drawing.Size(117, 29);
+            this.ConstrButton.TabIndex = 6;
+            this.ConstrButton.Text = "Выполнить";
+            this.ConstrButton.UseVisualStyleBackColor = true;
+            this.ConstrButton.Click += new System.EventHandler(this.ConstrButton_Click);
+            // 
+            // cbType
+            // 
+            this.cbType.AutoSize = true;
+            this.cbType.Location = new System.Drawing.Point(61, 219);
+            this.cbType.Name = "cbType";
+            this.cbType.Size = new System.Drawing.Size(108, 24);
+            this.cbType.TabIndex = 5;
+            this.cbType.Text = "Тип вклада";
+            this.cbType.UseVisualStyleBackColor = true;
+            this.cbType.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // cbBalance
+            // 
+            this.cbBalance.AutoSize = true;
+            this.cbBalance.Location = new System.Drawing.Point(61, 154);
+            this.cbBalance.Name = "cbBalance";
+            this.cbBalance.Size = new System.Drawing.Size(80, 24);
+            this.cbBalance.TabIndex = 4;
+            this.cbBalance.Text = "Баланс";
+            this.cbBalance.UseVisualStyleBackColor = true;
+            this.cbBalance.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // cbName
+            // 
+            this.cbName.AutoSize = true;
+            this.cbName.Location = new System.Drawing.Point(61, 92);
+            this.cbName.Name = "cbName";
+            this.cbName.Size = new System.Drawing.Size(95, 24);
+            this.cbName.TabIndex = 2;
+            this.cbName.Text = "Фамилия";
+            this.cbName.UseVisualStyleBackColor = true;
+            this.cbName.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label3.Font = new System.Drawing.Font("Segoe UI Black", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.Location = new System.Drawing.Point(485, -1);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(30, 31);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Х";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Lucida Fax", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(139, 17);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(219, 25);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Конструктор поиска";
             // 
             // BeginSearch
             // 
@@ -790,35 +790,35 @@
             // конструкторToolStripMenuItem
             // 
             this.конструкторToolStripMenuItem.Name = "конструкторToolStripMenuItem";
-            this.конструкторToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.конструкторToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
             this.конструкторToolStripMenuItem.Text = "Конструктор";
             this.конструкторToolStripMenuItem.Click += new System.EventHandler(this.конструкторToolStripMenuItem_Click);
             // 
             // поСчётаToolStripMenuItem
             // 
             this.поСчётаToolStripMenuItem.Name = "поСчётаToolStripMenuItem";
-            this.поСчётаToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.поСчётаToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
             this.поСчётаToolStripMenuItem.Text = "По № счёта";
             this.поСчётаToolStripMenuItem.Click += new System.EventHandler(this.SearchToolStripMenuItem_Click);
             // 
             // балансToolStripMenuItem
             // 
             this.балансToolStripMenuItem.Name = "балансToolStripMenuItem";
-            this.балансToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.балансToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
             this.балансToolStripMenuItem.Text = "Баланс";
             this.балансToolStripMenuItem.Click += new System.EventHandler(this.SearchToolStripMenuItem_Click);
             // 
             // типВкладаToolStripMenuItem
             // 
             this.типВкладаToolStripMenuItem.Name = "типВкладаToolStripMenuItem";
-            this.типВкладаToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.типВкладаToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
             this.типВкладаToolStripMenuItem.Text = "Тип вклада";
             this.типВкладаToolStripMenuItem.Click += new System.EventHandler(this.SearchToolStripMenuItem_Click);
             // 
             // поФамилииToolStripMenuItem
             // 
             this.поФамилииToolStripMenuItem.Name = "поФамилииToolStripMenuItem";
-            this.поФамилииToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.поФамилииToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
             this.поФамилииToolStripMenuItem.Text = "По фамилии";
             this.поФамилииToolStripMenuItem.Click += new System.EventHandler(this.SearchToolStripMenuItem_Click);
             // 
@@ -938,12 +938,12 @@
             this.Load += new System.EventHandler(this.mainWindow_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.SearchConstructorPanel.ResumeLayout(false);
-            this.SearchConstructorPanel.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.SearchPanel.ResumeLayout(false);
             this.SearchPanel.PerformLayout();
+            this.SearchConstructorPanel.ResumeLayout(false);
+            this.SearchConstructorPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

@@ -30,6 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BankBill));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.allData = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.closeAllData = new System.Windows.Forms.Label();
+            this.dgvMain = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.SearchConstructorPanel = new System.Windows.Forms.Panel();
             this.forType = new System.Windows.Forms.TextBox();
@@ -108,19 +112,15 @@
             this.ElementsLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.allData = new System.Windows.Forms.Panel();
-            this.dgvMain = new System.Windows.Forms.DataGridView();
-            this.closeAllData = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            this.allData.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMain)).BeginInit();
             this.SearchConstructorPanel.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SearchPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            this.allData.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMain)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -164,6 +164,52 @@
             this.panel1.Size = new System.Drawing.Size(811, 913);
             this.panel1.TabIndex = 0;
             // 
+            // allData
+            // 
+            this.allData.BackColor = System.Drawing.SystemColors.Info;
+            this.allData.Controls.Add(this.label5);
+            this.allData.Controls.Add(this.closeAllData);
+            this.allData.Controls.Add(this.dgvMain);
+            this.allData.Location = new System.Drawing.Point(12, 304);
+            this.allData.Name = "allData";
+            this.allData.Size = new System.Drawing.Size(808, 642);
+            this.allData.TabIndex = 1;
+            this.allData.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label5.Location = new System.Drawing.Point(7, 9);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(353, 28);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Информация о банковских счетах";
+            // 
+            // closeAllData
+            // 
+            this.closeAllData.AutoSize = true;
+            this.closeAllData.BackColor = System.Drawing.Color.Black;
+            this.closeAllData.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.closeAllData.Font = new System.Drawing.Font("Segoe UI Black", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.closeAllData.ForeColor = System.Drawing.Color.Red;
+            this.closeAllData.Location = new System.Drawing.Point(781, 0);
+            this.closeAllData.Name = "closeAllData";
+            this.closeAllData.Size = new System.Drawing.Size(26, 28);
+            this.closeAllData.TabIndex = 1;
+            this.closeAllData.Text = "X";
+            this.closeAllData.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // dgvMain
+            // 
+            this.dgvMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMain.Location = new System.Drawing.Point(3, 49);
+            this.dgvMain.Name = "dgvMain";
+            this.dgvMain.RowHeadersWidth = 51;
+            this.dgvMain.RowTemplate.Height = 29;
+            this.dgvMain.Size = new System.Drawing.Size(805, 593);
+            this.dgvMain.TabIndex = 0;
+            // 
             // panel2
             // 
             this.panel2.Location = new System.Drawing.Point(598, 563);
@@ -184,7 +230,7 @@
             this.SearchConstructorPanel.Controls.Add(this.cbName);
             this.SearchConstructorPanel.Controls.Add(this.label3);
             this.SearchConstructorPanel.Controls.Add(this.label2);
-            this.SearchConstructorPanel.Location = new System.Drawing.Point(150, 61);
+            this.SearchConstructorPanel.Location = new System.Drawing.Point(150, 261);
             this.SearchConstructorPanel.Name = "SearchConstructorPanel";
             this.SearchConstructorPanel.Size = new System.Drawing.Size(518, 345);
             this.SearchConstructorPanel.TabIndex = 33;
@@ -871,8 +917,8 @@
             // оПрограммеToolStripMenuItem
             // 
             this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(118, 24);
-            this.оПрограммеToolStripMenuItem.Text = "О программе";
+            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(122, 24);
+            this.оПрограммеToolStripMenuItem.Text = "Открыть инфо";
             this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.оПрограммеToolStripMenuItem_Click);
             // 
             // statusStrip1
@@ -942,50 +988,6 @@
             this.toolStripStatusLabel5.Size = new System.Drawing.Size(39, 24);
             this.toolStripStatusLabel5.Text = "-----";
             // 
-            // allData
-            // 
-            this.allData.BackColor = System.Drawing.SystemColors.Info;
-            this.allData.Controls.Add(this.label5);
-            this.allData.Controls.Add(this.closeAllData);
-            this.allData.Controls.Add(this.dgvMain);
-            this.allData.Location = new System.Drawing.Point(3, 58);
-            this.allData.Name = "allData";
-            this.allData.Size = new System.Drawing.Size(808, 642);
-            this.allData.TabIndex = 4;
-            // 
-            // dgvMain
-            // 
-            this.dgvMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMain.Location = new System.Drawing.Point(3, 49);
-            this.dgvMain.Name = "dgvMain";
-            this.dgvMain.RowHeadersWidth = 51;
-            this.dgvMain.RowTemplate.Height = 29;
-            this.dgvMain.Size = new System.Drawing.Size(805, 593);
-            this.dgvMain.TabIndex = 0;
-            // 
-            // closeAllData
-            // 
-            this.closeAllData.AutoSize = true;
-            this.closeAllData.BackColor = System.Drawing.Color.Black;
-            this.closeAllData.Font = new System.Drawing.Font("Segoe UI Black", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
-            this.closeAllData.ForeColor = System.Drawing.Color.Red;
-            this.closeAllData.Location = new System.Drawing.Point(781, 0);
-            this.closeAllData.Name = "closeAllData";
-            this.closeAllData.Size = new System.Drawing.Size(26, 28);
-            this.closeAllData.TabIndex = 1;
-            this.closeAllData.Text = "X";
-            this.closeAllData.Click += new System.EventHandler(this.label4_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(7, 9);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(353, 28);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Информация о банковских счетах";
-            // 
             // BankBill
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -998,6 +1000,9 @@
             this.Load += new System.EventHandler(this.mainWindow_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.allData.ResumeLayout(false);
+            this.allData.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMain)).EndInit();
             this.SearchConstructorPanel.ResumeLayout(false);
             this.SearchConstructorPanel.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
@@ -1009,9 +1014,6 @@
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.allData.ResumeLayout(false);
-            this.allData.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMain)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

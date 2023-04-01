@@ -1,8 +1,12 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace Lab2
 {
@@ -10,6 +14,14 @@ namespace Lab2
     //конструктор поиска
     public partial class BankBill : Form
     {
+        SqlConnection? connection = null;
+        SqlCommand? command = null;
+        SqlDataAdapter? adapter = null;
+        DataTable? table = null; 
+
+
+
+
         public PersonalBill pb = new PersonalBill();
         DialogResult forMessages;
         //DateLabel
@@ -112,34 +124,46 @@ namespace Lab2
 
         private void mainWindow_Load(object sender, EventArgs e)
         {
-            timer = new System.Windows.Forms.Timer();
-            timer.Tick += timer_Tick;
-            timer.Start();
-            this.Height = 950;
-            this.pb.startBalance = 0;
-            this.collDate.MinDate = DateTime.Now.AddDays(2);
-            lastActionSet("-----");
-            this.SearchPanel.Width = 470;
-            this.SearchPanel.Height = 230;
-            this.SearchPanel.Location = new Point(150,90);
-            this.SearchConstructorPanel.Height = 345;
-            this.SearchConstructorPanel.Width = 518;
-            this.SearchConstructorPanel.Location = new Point(150, 60);
-            FileInfo fi = new FileInfo(@"C:\Users\mdxbu\Labs\4SEMESTR\OOP4SEM\Lab3\Lab2\bin\Debug\net6.0-windows\bill.xml");
-            if (fi.Exists)
+            try
             {
-                var xml = new XmlSerializer(typeof(List<PersonalBill>));
-                using (var fx = new FileStream("bill.xml", FileMode.Open))
+                connection = new SqlConnection(ConfigurationManager.ConnectionStrings["myConnection"].ConnectionString);
+                connection.Open();
+                timer = new System.Windows.Forms.Timer();
+                timer.Tick += timer_Tick;
+                timer.Start();
+                this.Height = 950;
+                this.pb.startBalance = 0;
+                this.collDate.MinDate = DateTime.Now.AddDays(2);
+                lastActionSet("-----");
+                this.SearchPanel.Width = 470;
+                this.SearchPanel.Height = 230;
+                this.SearchPanel.Location = new Point(150, 90);
+                this.SearchConstructorPanel.Height = 345;
+                this.SearchConstructorPanel.Width = 518;
+                this.SearchConstructorPanel.Location = new Point(150, 60);
+
+
+                FileInfo fi = new FileInfo(@"C:\Users\mdxbu\Labs\4SEMESTR\OOP4SEM\Lab3\Lab2\bin\Debug\net6.0-windows\bill.xml");
+                if (fi.Exists)
                 {
-                    var human = (List<PersonalBill>)xml.Deserialize(fx)!;
-                    if (human != null && human.Count >= 1)
-                        bills = human;
-                    bills_Change();
-                    foreach (var el in bills)
+                    var xml = new XmlSerializer(typeof(List<PersonalBill>));
+                    using (var fx = new FileStream("bill.xml", FileMode.Open))
                     {
-                        txtResult.Text += el.ToString() + "\n\n";
+                        var human = (List<PersonalBill>)xml.Deserialize(fx)!;
+                        if (human != null && human.Count >= 1)
+                            bills = human;
+                        bills_Change();
+                        foreach (var el in bills)
+                        {
+                            /*txtResult.Text += el.ToString() + "\n\n";*/
+                        }
                     }
                 }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error!");
+                this.Close();
             }
         }
 
@@ -225,16 +249,46 @@ namespace Lab2
                 {
                     Random r = new Random();
                     this.pb.Number = r.Next(10000, 100000);
-                    forMessages = MessageBox.Show("Cчет создан!.", "Поздравляем", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Info_About.Enabled = true;
                     var xs = new XmlSerializer(typeof(List<PersonalBill>));
                     bills.Add(pb);
                     bills_Change();
-                    pb = new PersonalBill();
                     using (var fs = new FileStream("bill.xml", FileMode.OpenOrCreate))
                     {
                         xs.Serialize(fs, bills);
                     }
+                    SqlCommand c = new SqlCommand();
+                    c.Connection = connection;
+                    c.CommandText = "Begin tran " +
+                        "INSERT OWNER values (@value1, @value2, @value3, @value4, @value5);" +
+                        "commit tran;";
+                    c.Parameters.AddWithValue("@value1", this.pb.owner.FIO);
+                    c.Parameters.AddWithValue("@value2", this.pb.owner.birthDate);
+                    c.Parameters.AddWithValue("@value3", this.pb.owner.phoneNumber);
+                    c.Parameters.AddWithValue("@value4", this.pb.owner.wallet);
+                    c.Parameters.AddWithValue("@value5", this.pb.owner.PassportInfo);
+                    int rowsAffected = c.ExecuteNonQuery();
+                    if( rowsAffected != 1)
+                    {
+                        MessageBox.Show("Неудачная операция вставки", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                        return;
+                    }
+                    c.CommandText = "Begin tran " +
+                          "INSERT into PersonalBill(FIO, sendDate, startBalance, town, services) values (@value01, @value02, @value03, @value04, @value05);" +
+                          "commit tran;";
+                    c.Parameters.AddWithValue("@value01", this.pb.owner.FIO);
+                    c.Parameters.AddWithValue("@value02", this.pb.sendDate);
+                    c.Parameters.AddWithValue("@value03", this.pb.startBalance);
+                    c.Parameters.AddWithValue("@value04", this.pb.town);
+                    c.Parameters.AddWithValue("@value05", this.pb.services);
+                    rowsAffected = c.ExecuteNonQuery();
+                    if (rowsAffected != 1)
+                    {
+                        MessageBox.Show("Неудачная операция вставки", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                        return;
+                    }
+                    forMessages = MessageBox.Show("Cчет создан!.", "Поздравляем", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    pb = new PersonalBill();
                 }
                 catch
                 {
@@ -253,7 +307,7 @@ namespace Lab2
             using (var fx = new FileStream("bill.xml", FileMode.Open))
             {
                 var human = (List<PersonalBill>)xml.Deserialize(fx)!;
-                txtResult.Text = human.Last().ToString();
+/*                txtResult.Text = human.Last().ToString();*/
             }
         }
         public override string ToString()
@@ -305,8 +359,12 @@ namespace Lab2
 
         private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            lastActionSet("О программе");
-            forMessages = MessageBox.Show("Версия : 1.1.3\nРазработчик: Лешук Д.И.", "О программе", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            lastActionSet("Открыть инфо");
+            adapter = new SqlDataAdapter($"select * from PersonalBill", connection);
+            table = new DataTable();
+            adapter.Fill(table);
+            dgvMain.DataSource = table;
+            this.allData.Visible = true;
         }
 
         public bool Validate(Owner obj)
@@ -347,28 +405,28 @@ namespace Lab2
             {
                 case "Тип вклада":
                     {
-                        var result = bills
-                        .OrderBy(n => n.owner.wallet);
-                        caption = "Сортировка по типу валюты!";
-                        foreach (var item in result)
+                        caption = "Поиск по типу вклада";
+                        adapter = new SqlDataAdapter($"select PersonalBill.Id, Owner.FIO, Owner.Wallet from PersonalBill inner join Owner on PersonalBill.FIO = Owner.FIO" +
+                            $" order by wallet asc", connection);
+                        table = new DataTable();
+                        adapter.Fill(table);
+                        dgvMain.DataSource = table;
+                        this.allData.Visible = true;
+                        if (table == null)
                         {
-                            sortResult += item.ToString() + "\n\n";
-                            sortOrSeek.Add(item);
+                            MessageBox.Show("Записей не найдено", caption, MessageBoxButtons.OK);
                         }
-                        MessageBox.Show(sortResult, caption, MessageBoxButtons.OK);
                         break;
                     }
                 case "Дата открытия":
                     {
-                        var result2 = bills
-                        .OrderBy(n => n.sendDate);
-                        caption = "Сортировка по дате открытия вклада";
-                        foreach (var item in result2)
-                        {
-                            sortResult += item.ToString() + "\n\n";
-                            sortOrSeek.Add(item);
-                        }
-                        MessageBox.Show(sortResult, caption, MessageBoxButtons.OK);
+                        caption = "Поиск по типу вклада";
+                        adapter = new SqlDataAdapter($"select PersonalBill.Id, Owner.FIO, PersonalBill.sendDate, Owner.Wallet from PersonalBill inner join Owner on PersonalBill.FIO = Owner.FIO" +
+                            $" order by sendDate asc", connection);
+                        table = new DataTable();
+                        adapter.Fill(table);
+                        dgvMain.DataSource = table;
+                        this.allData.Visible = true;
                         break;
                     }
             }
@@ -444,18 +502,15 @@ namespace Lab2
                             Regex r = new Regex(@"[0-9]{1,3}");
                             if (r.IsMatch(searchInput.Text))
                             {
-                                var res = bills
-                                    .Where(n => n.startBalance > Convert.ToInt32(searchInput.Text))
-                                    .Select(n => n);
-                                caption = "Поиск по балансу вклада";
-                                foreach (var item in res)
+                                adapter = new SqlDataAdapter($"SELECT * FROM PersonalBill where startBalance > {searchInput.Text.ToString()}", connection);
+                                table = new DataTable();
+                                adapter.Fill(table);
+                                dgvMain.DataSource = table;
+                                this.allData.Visible = true;
+                                if (table == null)
                                 {
-                                    sortResult += item.ToString() + "\n\n";
-                                    sortOrSeek.Add(item);
+                                    MessageBox.Show("Записей не найдено", caption, MessageBoxButtons.OK);
                                 }
-                                if (sortOrSeek.Count == 0)
-                                    sortResult = "Записей не найдено";
-                                MessageBox.Show(sortResult, caption, MessageBoxButtons.OK);
                             }
                             else
                                 MessageBox.Show("Вы ввели неверное значение для данного типа поиска", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -463,21 +518,19 @@ namespace Lab2
                         }
                     case "По № счёта":
                         {
-                            Regex r = new Regex(@"[0-9]{5,6}");
+                            Regex r = new Regex(@"[0-9]{4,6}");
                             if (r.IsMatch(searchInput.Text))
                             {
-                                var res = bills
-                                    .Where(n => n.Number == Convert.ToInt32(searchInput.Text));
-                                caption = "Поиск по номеру вклада";
-                                foreach (var item in res)
+                                adapter = new SqlDataAdapter($"SELECT * FROM PersonalBill where id = {searchInput.Text.ToString()}", connection);
+                                table = new DataTable();
+                                adapter.Fill(table);
+                                dgvMain.DataSource = table;
+                                this.allData.Visible = true;
+                                caption = "Поиск по № счёта";
+                                if (table == null)
                                 {
-                                    sortResult += item.ToString() + "\n\n";
-                                    sortOrSeek.Add(item);
-                                    break;
+                                    MessageBox.Show("Записей не найдено", caption, MessageBoxButtons.OK);
                                 }
-                                if (sortOrSeek.Count == 0)
-                                    sortResult = "Записей не найдено";
-                                MessageBox.Show(sortResult, caption, MessageBoxButtons.OK);
                             }
                             else
                                 MessageBox.Show("Вы ввели неверное значение для данного типа поиска", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -488,19 +541,17 @@ namespace Lab2
                             Regex rg = new Regex(@"[A-Z]{3}");
                             if (rg.IsMatch(searchInput.Text))
                             {
-                                var res = bills
-                                .Where(n => n.owner.wallet == searchInput.Text)
-                                .Select(n => n);
                                 caption = "Поиск по типу вклада";
-                                foreach (var item in res)
+                                adapter = new SqlDataAdapter($"exec Find_bill_by_type @wallet = \'{searchInput.Text}\'", connection);
+                                table = new DataTable();
+                                adapter.Fill(table);
+                                dgvMain.DataSource = table;
+                                this.allData.Visible = true;
+                                caption = "Поиск по № счёта";
+                                if (table == null)
                                 {
-                                    sortResult += item.ToString() + "\n\n";
-                                    sortOrSeek.Add(item);
+                                    MessageBox.Show("Записей не найдено", caption, MessageBoxButtons.OK);
                                 }
-                                if (sortOrSeek.Count == 0)
-                                    sortResult = "Записей не найдено";
-                                MessageBox.Show(sortResult, caption, MessageBoxButtons.OK);
-
                             }
                             else
                             {
@@ -513,18 +564,17 @@ namespace Lab2
                             Regex r = new Regex(@"[А-я]{3,15}");
                             if (r.IsMatch(searchInput.Text))
                             {
-                                var ress = bills
-                                    .Where(n => n.owner.FIO.Split(" ")[0].Contains(searchInput.Text))
-                                    .Select(n => n);
-                                caption = "Поиск по фамилии";
-                                foreach (var item in ress)
+                                caption = "Поиск по типу вклада";
+                                adapter = new SqlDataAdapter($"select * from PersonalBill where FIO like \'{searchInput.Text}%\'", connection);
+                                table = new DataTable();
+                                adapter.Fill(table);
+                                dgvMain.DataSource = table;
+                                this.allData.Visible = true;
+                                caption = "Поиск по № счёта";
+                                if (table == null)
                                 {
-                                    sortResult += item.ToString() + "\n\n";
-                                    sortOrSeek.Add(item);
+                                    MessageBox.Show("Записей не найдено", caption, MessageBoxButtons.OK);
                                 }
-                                if (sortOrSeek.Count == 0)
-                                    sortResult = "Записей не найдено";
-                                MessageBox.Show(sortResult, caption, MessageBoxButtons.OK);
 
                             }
                         else 

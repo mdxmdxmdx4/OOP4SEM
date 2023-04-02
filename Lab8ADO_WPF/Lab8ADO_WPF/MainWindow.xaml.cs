@@ -43,6 +43,7 @@ namespace Lab8ADO_WPF
             BirthD_Picker.DisplayDateEnd = DateTime.Now.AddYears(-18);
             BirthD_Picker.DisplayDateStart = DateTime.Now.AddYears(-100);
             BirthD_Picker.SelectedDate = DateTime.Now.AddYears(-18).AddDays(-31);
+            DateOfG.Text = $"Примерная дата выдачи \n {DateTime.Now.AddDays(7).ToShortDateString()}";
         }
 
         private void Show_all_Click(object sender, RoutedEventArgs e)
@@ -78,7 +79,7 @@ namespace Lab8ADO_WPF
         {
             foreach (var ch in e.Text)
             {
-                if (!char.IsDigit(ch))
+                if (!char.IsLetter(ch))
                 {
                     e.Handled = true;
                     return;
@@ -88,9 +89,25 @@ namespace Lab8ADO_WPF
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            DataTable dataTable = GetDataFromDatabase($"begin tran delete PersonalBill where Id = {NumToDelete.Text}; commit tran;");
-            DataTable dataTable1 = GetDataFromDatabase("SELECT * FROM PersonalBill");
-            dgResults.ItemsSource = dataTable1.DefaultView;
+            try
+            {
+                DataTable dataTable = GetDataFromDatabase($"begin tran delete PersonalBill where FIO like \'{NumToDelete.Text}%\'; commit tran;");
+                DataTable dataTablex0 = GetDataFromDatabase($"begin tran delete Owner where FIO like \'{NumToDelete.Text}%\'; commit tran;");
+            }
+            catch (SqlException ex)
+            {
+                string errormsg = "";
+                foreach (SqlError err in ex.Errors)
+                {
+                    errormsg += err.Message + ",";
+                }
+                MessageBox.Show(errormsg, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                DataTable dataTablex1 = GetDataFromDatabase("SELECT * FROM PersonalBill");
+                dgResults.ItemsSource = dataTablex1.DefaultView;
+            }
         }
 
         private void Create_Click(object sender, RoutedEventArgs e)
@@ -132,9 +149,14 @@ namespace Lab8ADO_WPF
                 MessageBox.Show("Cчет создан!", "Поздравляем", MessageBoxButton.OK, MessageBoxImage.Information);
                 pb = new PersonalBill();
             }
-            catch
+            catch (SqlException ex)
             {
-                MessageBox.Show("Произошла ошибка во время создания счёта!\n Приносим свои извинения.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                string errormsg = "";
+                foreach(SqlError err in ex.Errors)
+                {
+                    errormsg += err.Message + ",";
+                }
+                MessageBox.Show(errormsg, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
 
@@ -144,7 +166,7 @@ namespace Lab8ADO_WPF
         {
             ComboBox comboBox = (ComboBox)sender;
             this.pb.town = comboBox.Text;
-            DateOfG.Text = comboBox.Text;
+/*            DateOfG.Text = comboBox.Text;*/
         }
 
         private void RUB_Checked(object sender, RoutedEventArgs e)
@@ -178,7 +200,7 @@ namespace Lab8ADO_WPF
             if (selectedDate != null)
             {
                 this.pb.owner.birthDate = selectedDate.Value;
-                this.DateOfG.Text = selectedDate.Value.ToShortDateString();
+/*                this.DateOfG.Text = selectedDate.Value.ToShortDateString();*/
                 this.pb.sendDate = DateTime.Today.AddDays(7);
             }
         }
@@ -187,7 +209,7 @@ namespace Lab8ADO_WPF
         {
             int sliderVal = Convert.ToInt32(StartB_Slider.Value);
             this.pb.startBalance = sliderVal;
-            this.DateOfG.Text = Convert.ToInt32(StartB_Slider.Value).ToString();
+/*            this.DateOfG.Text = Convert.ToInt32(StartB_Slider.Value).ToString();*/
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -222,6 +244,36 @@ namespace Lab8ADO_WPF
         {
             DataTable dataTable = GetDataFromDatabase("SELECT * FROM Owner");
             dgResults.ItemsSource = dataTable.DefaultView;
+        }
+
+        private void Wallet_Search_tb_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            foreach (var ch in e.Text)
+            {
+                if (!char.IsLetter(ch))
+                {
+                    e.Handled = true;
+                    return;
+                }
+            }
+        }
+
+        private void Wallet_Search_Click(object sender, RoutedEventArgs e)
+        {
+            DataTable dataTable = GetDataFromDatabase($"exec Find_bill_by_type @wallet = \'{Wallet_Search_tb.Text}\'");
+            dgResults.ItemsSource = dataTable.DefaultView;
+
+        }
+
+        private void FIO_Search_Click(object sender, RoutedEventArgs e)
+        {
+            DataTable dataTable = GetDataFromDatabase($"exec Find_bill_By_Surname @srnm = \'{FIO_SEARCH_TB.Text}\'");
+            dgResults.ItemsSource = dataTable.DefaultView;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            conn.Close();
         }
     }
 }

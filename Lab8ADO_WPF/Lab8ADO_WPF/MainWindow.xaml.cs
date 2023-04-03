@@ -231,12 +231,12 @@ namespace Lab8ADO_WPF
 
         private void Banking_Checked(object sender, RoutedEventArgs e)
         {
-            CheckBox cb = (CheckBox)sender;
-            if(cb.IsChecked == true)
-            {
-                this.pb.services = cb.Content.ToString();
-                this.DateOfG.Text = cb.Content.ToString();
-            }
+                CheckBox cb = (CheckBox)sender;
+                if(cb.IsChecked == true)
+                {
+                    this.pb.services = cb.Content.ToString();
+                    this.DateOfG.Text = cb.Content.ToString();
+                }
 
         }
 

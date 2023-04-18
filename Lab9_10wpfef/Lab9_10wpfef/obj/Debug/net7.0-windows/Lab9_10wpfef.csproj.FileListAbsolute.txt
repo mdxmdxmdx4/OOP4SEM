@@ -60,3 +60,4 @@ C:\Users\mdxbu\Labs\4SEMESTR\OOP4SEM\Lab9_10wpfef\Lab9_10wpfef\obj\Debug\net7.0-
 C:\Users\mdxbu\Labs\4SEMESTR\OOP4SEM\Lab9_10wpfef\Lab9_10wpfef\obj\Debug\net7.0-windows\Lab9_10wpfef.pdb
 C:\Users\mdxbu\Labs\4SEMESTR\OOP4SEM\Lab9_10wpfef\Lab9_10wpfef\obj\Debug\net7.0-windows\Lab9_10wpfef.genruntimeconfig.cache
 C:\Users\mdxbu\Labs\4SEMESTR\OOP4SEM\Lab9_10wpfef\Lab9_10wpfef\obj\Debug\net7.0-windows\ref\Lab9_10wpfef.dll
+C:\Users\mdxbu\Labs\4SEMESTR\OOP4SEM\Lab9_10wpfef\Lab9_10wpfef\bin\Debug\net7.0-windows\Lab9_10wpfef.dll.config

@@ -23,6 +23,7 @@ namespace Lab11
         {
             _unitOfWork = new UnitOfWork(new Context());
             AddLecturerCommand = new RelayCommand(AddLecturer);
+            UpdateLecturerCommand = new RelayCommand(UpdateLecturerOnCourse);
 
 
         }
@@ -58,6 +59,14 @@ namespace Lab11
             _unitOfWork.LecturerRepository.Add(SelectedLecturer);
             _unitOfWork.SaveChanges();
             SelectedCourse = null;
+        }
+        public void UpdateLecturerOnCourse()
+        {
+            SelectedCourse.Lecturer = SelectedLecturer;
+           // _unitOfWork.CourseRepository.Update(SelectedCourse);
+            _unitOfWork.SaveChanges();
+            SelectedCourse = null;
+            SelectedLecturer = null;
         }
     }
 }

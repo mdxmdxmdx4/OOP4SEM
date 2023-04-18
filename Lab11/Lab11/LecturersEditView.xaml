@@ -32,7 +32,8 @@
                           DisplayMemberPath="Name" Width="100" SelectedItem="{Binding SelectedCourse}"></ComboBox>
                 <TextBox x:Name="UpdTeach_Tb" FontSize="22" Width="250" Margin="0 20 0 0" Text="{Binding SelectedLecturer.Name}"></TextBox>
             </StackPanel>
-            <Button Content="Заменить" FontSize="24" Margin="0 20 0 0" Background="AliceBlue" Width="250"></Button>
+            <Button Content="Заменить" FontSize="24" Margin="0 20 0 0"
+                   Command="{Binding UpdateLecturerCommand}" Background="AliceBlue" Width="250"></Button>
         </StackPanel>
     </Grid>
 </Window>
